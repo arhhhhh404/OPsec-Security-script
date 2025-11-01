@@ -41,15 +41,15 @@ chmod +x VMcontainer.sh
 ./setup_vm.sh <app_name> [network_type] [enable_gui]
 ```
 - [network_type]:
--- none: No network access (completely isolated)
+  -- none: No network access (completely isolated)
 
--- restricted: Limited access to HTTP/HTTPS (ports 80 and 443)
+  -- restricted: Limited access to HTTP/HTTPS (ports 80 and 443)
 
--- full: Full network access
---- Default value: none
+  -- full: Full network access
+  --- Default value: none
 
 - [enable_gui]:
--- yes: GUI enabled (requires X11 to be running on the host)
+  -- yes: GUI enabled (requires X11 to be running on the host)
 
--- no: Console mode only
---- Default value: no
+  -- no: Console mode only
+  --- Default value: no
