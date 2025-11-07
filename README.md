@@ -63,3 +63,75 @@ chmod +x VMcontainer.sh
 ```bash
 ./VMcontainer.sh librewolf full yes
 ```
+
+---
+
+## firefox-opsec-session
+
+### Features
+
+- Launches a **temporary Firefox session** isolated in memory (`tmpfs`).
+- Creates a secure ephemeral Firefox profile (auto-deleted on exit).
+- Allows configuration of an optional **SOCKS** or **HTTP** proxy.
+- Disables most Firefox telemetry, WebRTC, and tracking features.
+- Prevents persistent data storage — cookies, cache, history are wiped on exit.
+- Can allocate custom RAM size for the temporary profile (default: 64 MB).
+- Automatically unmounts and cleans up after Firefox closes.
+- Compatible with Wayland and X11.
+
+---
+
+### Prerequisites
+
+- Host system: Debian, Ubuntu, or any Linux distribution supporting `bash`, `firefox`, and `tmpfs`.
+- Required packages:
+  - `firefox`
+  - `sudo`
+  - `coreutils` (for `mktemp`, `chmod`, `find`, etc.)
+  - `mount`, `umount`
+- `sudo` access is required **only for mounting tmpfs**.
+
+---
+
+### Installation
+
+```bash
+git clone https://github.com/arhhhhh404/OPsec-Security-script.git
+cd OPsec-Security-script/firefox-opsec
+chmod +x sessionweb.sh
+```
+
+---
+
+### Usage
+
+```bash
+./sessionweb.sh [proxy_type] [proxy_host] [proxy_port]
+```
+- [Proxy type]:
+  
+  - http: A http proxy
+
+  - socks: A socks proxy
+    
+    - Default value: none
+
+- [Proxy host]:
+
+  - give the ip of the proxy
+
+    - Default value: none
+   
+- [Proxy host]:
+
+  - give the ip of the proxy
+
+    - Default value: none
+   
+#### Exemple
+
+```bash
+./sessionweb.sh --proxy-type socks --proxy-host 127.0.0.1 --proxy-port 9050
+```
+
+---
