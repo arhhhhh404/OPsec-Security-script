@@ -65,7 +65,6 @@ runcmd:
   - ufw default deny outgoing
 EOF
 
-# --- Config réseau ---
 if [[ "$NETWORK_TYPE" == "restricted" ]]; then
 cat >> "$CLOUD_DIR/user-data" <<EOF
   - ufw allow out 80,443/tcp
@@ -85,15 +84,12 @@ cat >> "$CLOUD_DIR/user-data" <<EOF
 
 EOF
 
-# --- Conteneur Docker ---
 DOCKER_RUN="docker run -d --name=${APP_NAME}-app --user 1000:1000 --cap-drop=ALL --cap-add=NET_BIND_SERVICE --read-only --tmpfs /tmp"
 
-# Graphique support
 if [[ "$ENABLE_GUI" == "yes" ]]; then
   DOCKER_RUN="$DOCKER_RUN -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix"
 fi
 
-# Network config
 if [[ "$NETWORK_TYPE" == "none" ]]; then
   DOCKER_RUN="$DOCKER_RUN --network none"
 fi
